@@ -1,4 +1,4 @@
-# Install script for directory: /home/paul/paoo/tema1
+# Install script for directory: /home/paul/paoo/tema2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/paul/paoo/tema1/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/paul/paoo/tema2/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
