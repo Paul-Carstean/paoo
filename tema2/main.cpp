@@ -42,9 +42,11 @@ animal::~animal(){
 
 animal::animal(const animal& a)
 	:color(a.color){
+		cout<<"Copy constructor called"<<endl;
 };
 
 animal& animal::operator=(const animal& a){
+	cout<<"Copy assignment operator called"<<endl;
 	if (this == &a) return *this;
 	color = a.color;
 	return *this;
