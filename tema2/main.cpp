@@ -4,17 +4,27 @@ using namespace std;
 
 class animal{
 	private:
-		string color;
+		string name;
+		int years;
+		string sex;
 		
 	public:
 	    animal();
-		animal(const string& c);
+		animal(const string& name, const int& years, const string& sex);
 		~animal();
 		animal(const animal& a);
 		animal& operator=(const animal& a);
 		
-		string getColor(){
-			return color;
+		string getName(){
+			return name;
+		}
+
+		int getYears(){
+			return years;
+		}
+
+		string getSex(){
+			return sex;
 		}
 		
 		void eat(){
@@ -27,12 +37,16 @@ class animal{
 };
 
 animal::animal()
-:color(){
+	:name(),
+	years(),
+	sex(){
 	cout<<"Animal created"<<endl;
 };
 
-animal::animal(const string& c)
-	:color(c){
+animal::animal(const string& name, const int& years, const string& sex)
+	:name(name),
+	years(years),
+	sex(sex){
 		cout<<"Animal created"<<endl;
 	};
 
@@ -41,14 +55,18 @@ animal::~animal(){
 };
 
 animal::animal(const animal& a)
-	:color(a.color){
+	:name(a.name),
+	years(a.years),
+	sex(a.sex){
 		cout<<"Copy constructor called"<<endl;
 };
 
 animal& animal::operator=(const animal& a){
 	cout<<"Copy assignment operator called"<<endl;
 	if (this == &a) return *this;
-	color = a.color;
+	name = a.name;
+	years = a.years;
+	sex = a.sex;
 	return *this;
 };
 	
@@ -58,44 +76,55 @@ class waterAnimal : public animal{
 		waterAnimal& operator=(const waterAnimal& wa);
 		
 	public:
-		waterAnimal(const string& color);
-		~waterAnimal();
+		int swimmingDepth;
+		waterAnimal();
+		waterAnimal(const string& name, const int& years, const string& sex, const int& swimmingDepth);
+
+		int getSwimmingDepth(){
+			return swimmingDepth;
+		}
 		
 		void swim(){
-			cout<<"swiming"<<endl;
+			cout<<"swimming"<<endl;
 		}
 };
 
-waterAnimal::~waterAnimal()
-	{};	
+waterAnimal::waterAnimal()
+	:animal(),
+	swimmingDepth(){};	
 
-waterAnimal::waterAnimal(const string& color)
-	:animal(color){};
+waterAnimal::waterAnimal(const string& name, const int& years, const string& sex, const int& swimmingDepth)
+	:animal(name, years, sex),
+	swimmingDepth(swimmingDepth){};
 
 class landAnimal : public animal{
 	public:
+		int nrOfLegs;
 	    landAnimal();
-		landAnimal(const string& color);
-		~landAnimal();
+		landAnimal(const string& name, const int& years, const string& sex, const int& nrOfLegs);
 		landAnimal(const landAnimal& la);
 		landAnimal& operator=(const landAnimal& la);
 	
+		int getNrOfLegs(){
+			return nrOfLegs;
+		}
+
 		void run(){
 			cout<<"running"<<endl;
 		}
 };
 	
 landAnimal::landAnimal()
-	:animal(){};
+	:animal(),
+	nrOfLegs(nrOfLegs){};
 	
-landAnimal::landAnimal(const string& color)
-	:animal(color){};
-
-landAnimal::~landAnimal()
-	{};
+landAnimal::landAnimal(const string& name, const int& years, const string& sex, const int& nrOfLegs)
+	:animal(name, years, sex),
+	nrOfLegs(nrOfLegs){};
 
 landAnimal::landAnimal(const landAnimal& la)
-	:animal(la){
+	:animal(la),
+	nrOfLegs(nrOfLegs){
 
 };
 
@@ -103,23 +132,24 @@ landAnimal& landAnimal::operator=(const landAnimal& la)
 {
 	if (this == &la) return *this;
 	animal::operator=(la);
+	nrOfLegs = la.nrOfLegs;
 	return *this;
 };
 
 int main() {
 	
 	// calling the constructors
-    animal a1("black");
- 	landAnimal la1("yellow");
+    animal a1("bear", 22, "male");
+ 	landAnimal la1("tiger", 31, "male", 4);
 
     // calling the copy constructor
     animal a3(a1);
-    cout<<a3.getColor()<<endl;
+    cout<<a3.getName()<<endl;
 
     // calling the copy assignment operator
     landAnimal la2;
     la2 = la1;
-    cout<<la2.getColor()<<endl;
+    cout<<la2.getNrOfLegs()<<endl;
 
     return 0;
 }
