@@ -72,11 +72,11 @@ animal& animal::operator=(const animal& a){
 	
 class waterAnimal : public animal{
     private:
+		int swimmingDepth;
 		waterAnimal(const waterAnimal& wa);
 		waterAnimal& operator=(const waterAnimal& wa);
 		
 	public:
-		int swimmingDepth;
 		waterAnimal();
 		waterAnimal(const string& name, const int& years, const string& sex, const int& swimmingDepth);
 
@@ -98,8 +98,10 @@ waterAnimal::waterAnimal(const string& name, const int& years, const string& sex
 	swimmingDepth(swimmingDepth){};
 
 class landAnimal : public animal{
-	public:
+	private:
 		int nrOfLegs;
+
+	public:
 	    landAnimal();
 		landAnimal(const string& name, const int& years, const string& sex, const int& nrOfLegs);
 		landAnimal(const landAnimal& la);
